@@ -1,0 +1,13 @@
+<div class="p-5 row border-bottom">
+    <div class="col-3">
+        <img src={{item.img}} alt="" />
+    </div>
+    <div class="col-9">
+        <h1>{{item.message}}</h1>
+        <p><b>Últ. vez visto el {{item.date}}</b></p>
+        <p>{{item.description}}</p>
+        <p>Contacto: {{item.contact}}</p>
+        <p>{{item.location}}</p>
+        <button class="btn btn-warning text-white" *ngIf='item.report'>Ver reporte completo</button>
+    </div>
+</div>
