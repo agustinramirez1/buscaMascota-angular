@@ -1,1 +1,109 @@
-<p>add works!</p>
+<div class="container rounded-4 shadow my-4 border">
+    <form #myForm="ngForm" (ngSubmit)="submitForm(myForm)">
+        <h1 class="text-center border-bottom">Agregar un nuevo Reporte</h1>
+        <div class="px-5">
+            <div class="py-4">
+                <label for="title"><b>Título de reporte</b>:</label>
+                <input type="text" name="title" class="form-control" id="title" [(ngModel)]="formData.title" required
+                    maxlength="13">
+                <div
+                    *ngIf="myForm.controls['title']?.invalid && (myForm.controls['title'].dirty || myForm.controls['title'].touched)">
+                    <div *ngIf="myForm.controls['title'].errors?.['required']" class="text-danger">
+                        El titulo es requerido.
+                    </div>
+                    <div *ngIf="myForm.controls['title'].errors?.['maxlength']" class="text-danger">
+                        El titulo debe tener un máximo de 13 caracteres.
+                    </div>
+                </div>
+            </div>
+
+            <div class="pb-4">
+                <label for="id_description"><b>Descripción de reporte</b>:</label>
+                <textarea name="description" cols="40" rows="4" class="form-control"
+                    placeholder="Ejemplo: Encontré un perro blanco con collar, creo que es una mezcla de caniche, parece asustado y no pude retenerlo."
+                    maxlength="2000" required="" id="id_description" [(ngModel)]="formData.description" required>
+                </textarea>
+                <div
+                    *ngIf="myForm.controls['description']?.invalid && (myForm.controls['description'].dirty || myForm.controls['description'].touched)">
+                    <div *ngIf="myForm.controls['description'].errors?.['required']" class="text-danger">
+                        La descripción es requerida.
+                    </div>
+                </div>
+            </div>
+
+            <div class="pb-1">
+                <label for="picture"><b>Foto</b>:</label>
+                <input type="text" name="picture" class="form-control" id="picture" [(ngModel)]="formData.picture" required>
+                <div *ngIf="myForm.controls['picture']?.invalid && (myForm.controls['description'].dirty || myForm.controls['picture'].touched)">
+                    <div *ngIf="myForm.controls['picture'].errors?.['required']" class="text-danger">
+                        La direccion de la foto es requerida.
+                    </div>
+                </div>
+                <span class="helptext"><br>
+                    <small>
+                        Se necesita una imagen de la mascota para evitar confusiones y que sea más sencillo
+                        reconocerla
+                    </small>
+                </span>
+            </div>
+
+            <div class="pb-4">
+                <label for="phone"><b>Teléfono de contacto</b>:</label>
+                <input type="number" name="phone" class="form-control" placeholder="Ejemplo: +595990123456"
+                    maxlength="30" id="phone" [(ngModel)]="formData.phone" required>
+                <div
+                    *ngIf="myForm.controls['phone']?.invalid && (myForm.controls['phone'].dirty || myForm.controls['phone'].touched)">
+                    <div *ngIf="myForm.controls['phone'].errors?.['required']" class="text-danger">
+                        El número es requerido.
+                    </div>
+                </div>
+            </div>
+
+            <div class="pb-4">
+                <label for="pais"><b>País</b>:</label>
+                <select class="form-select" name="pais" id="pais" required [(ngModel)]="formData.pais">
+                    <option value="">Seleccionar</option>
+                    <option value="PY">Paraguay</option>
+                  </select>
+                <div
+                    *ngIf="myForm.controls['pais']?.invalid && (myForm.controls['pais'].dirty || myForm.controls['pais'].touched)">
+                    <div *ngIf="myForm.controls['pais'].errors?.['required']" class="text-danger">
+                        El pais es requerido.
+                    </div>
+                </div>
+            </div>
+
+            <div class="pb-4">
+                <label for="last_time_seen"><b>Última vez visto</b>:</label>
+                <input type="date" name="last_time_seen" class="form-control" placeholder="Select a date" id="last_time_seen" [(ngModel)]="formData.last_time_seen" required>
+                <div
+                    *ngIf="myForm.controls['last_time_seen']?.invalid && (myForm.controls['last_time_seen'].dirty || myForm.controls['last_time_seen'].touched)">
+                    <div *ngIf="myForm.controls['last_time_seen'].errors?.['required']" class="text-danger">
+                        La fecha es requerida.
+                    </div>
+                </div>
+            </div>
+
+            <div class="pb-4">
+                <label for="url"><b>Link del Reporte</b>:</label>
+                <input type="text" name="url" class="form-control" id="url" [(ngModel)]="formData.url" required [pattern]="patternUrl">
+                <div
+                    *ngIf="myForm.controls['url']?.invalid && (myForm.controls['url'].dirty || myForm.controls['url'].touched)">
+                    <div *ngIf="myForm.controls['url'].errors?.['required']" class="text-danger">
+                        La url es requerida.
+                    </div>
+                    <div *ngIf="myForm.controls['url'].errors?.['pattern']" class="text-danger">
+                        La url es inválida.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="my-4 form-group text-center row-cols-5 ">
+            <button type="submit" class="btn btn-success btn-lg btn-block" id="submitButton"
+                [disabled]="myForm?.invalid">
+                Publicar
+            </button>
+        </div>
+    </form>
+</div>

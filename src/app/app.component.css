@@ -1,3 +1,11 @@
-.container {
-    background-color: white;
+.bg-body-tertiary {
+    background-color: #ffffff !important;
+}
+
+.navbar-brand {
+    color: rgb(234, 159, 54) !important;
+}
+
+a {
+    color: rgb(234, 159, 54) !important;
 }
